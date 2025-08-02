@@ -1,0 +1,32 @@
+name: Azure Federated Identity Access
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  access-blob:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Azure login with federated identity
+        uses: azure/login@v1
+        with:
+          client-id: 3ee3905c-5db0-45a1-8fe2-729e3b831ee4
+          tenant-id: fdd066e1-ee37-49bc-b08f-d0e152119b04
+          subscription-id: ea972ed6-7e15-4f23-a54f-719afd7fbebc
+
+      - name: List blob containers (or read blob to find the flag)
+        run: |
+          az storage blob list \
+            --account-name iamazurelab341ca23d2 \
+            --container-name "\$web" \
+            --auth-mode login \
+            --output table
