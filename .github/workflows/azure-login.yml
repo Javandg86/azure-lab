@@ -24,6 +24,9 @@ jobs:
           subscription-id: ea972ed6-7e15-4f23-a54f-719afd7fbebc
         env:
           AZURE_CLIENT_ID: 3ee3905c-5db0-45a1-8fe2-729e3b831ee4
+          AZURE_TENANT_ID: fdd066e1-ee37-49bc-b08f-d0e152119b04
+          AZURE_SUBSCRIPTION_ID: ea972ed6-7e15-4f23-a54f-719afd7fbebc
+
 
       - name: List blob containers (or read blob to find the flag)
         run: |
